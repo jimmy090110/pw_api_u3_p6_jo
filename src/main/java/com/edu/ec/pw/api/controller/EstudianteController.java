@@ -26,20 +26,25 @@ public class EstudianteController {
 
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiante/guardar
-	@PostMapping(path = "/guardar")
+	//nIVEL 1: //http://localhost:8080/API/v1.0/Matricula/estudiante
+	@PostMapping
 	public void guardar(@RequestBody Estudiante estudiante) {
 		this.estudianteService.guardar(estudiante);
 	}
 	
-	//http://localhost:8080/API/v1.0/Matricula/estudiante/actualizar
-	@PutMapping(path = "/actualizar")
-	public void actulializar(@RequestBody Estudiante estudiante) {
+	//http://localhost:8080/API/v1.0/Matricula/estudiante/actualizar/
+	//Nivel 1 : //http://localhost:8080/API/v1.0/Matricula/estudiante/3
+	@PutMapping(path = "/{id}")
+	public void actulializar(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
+		estudiante.setId(id);
 		this.estudianteService.actualizar(estudiante);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiante/actualizar/parcial
-	@PatchMapping(path = "/actualizar/parcial")
-	public void actualizarParcial(@RequestBody Estudiante estudiante) {
+	// Nivel 1: http://localhost:8080/API/v1.0/Matricula/estudiantes/{id}
+	@PatchMapping(path = "{id}")
+	public void actualizarParcial(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
+		estudiante.setId(id);
 		Estudiante estudiante2=this.estudianteService.buscar(estudiante.getId());
 		if(estudiante.getNombre()!=null) {
 			estudiante2.setNombre(estudiante.getNombre());
@@ -52,13 +57,15 @@ public class EstudianteController {
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/borrar/1
-	@DeleteMapping(path = "/borrar")
+	//Nivel 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes/{id}
+	@DeleteMapping(path = "/{id}")
 	public void borrar(@PathVariable Integer id) {
 		this.estudianteService.borrar(id);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/buscar/3/nuevo/prueba
-	@GetMapping(path = "/buscar/{id}/nuevo")
+	//Nivel 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes/1
+	@GetMapping(path = "/{id}")
 	public Estudiante buscar(@PathVariable Integer id) {
 		return this.estudianteService.buscar(id);
 	}
