@@ -32,7 +32,16 @@ public class Estudiante {
 	@Column(name = "estu_genero")
 	private String genero;
 	
+	
+	
+	
 	//Set and Get
+
+	@Override
+	public String toString() {
+		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
+				+ fechaNacimiento + ", genero=" + genero + "]";
+	}
 
 	public Integer getId() {
 		return id;
