@@ -3,6 +3,7 @@ package com.edu.ec.pw.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,22 +29,24 @@ public class EstudianteController {
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/guardar
 	//nIVEL 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes
 	@PostMapping
-	public void guardar(@RequestBody Estudiante estudiante) {
+	public ResponseEntity<Estudiante>  guardar(@RequestBody Estudiante estudiante) {
 		this.estudianteService.guardar(estudiante);
+		return ResponseEntity.status(201).body(estudiante);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/actualizar/
 	//Nivel 1 : //http://localhost:8080/API/v1.0/Matricula/estudiantes/3
 	@PutMapping(path = "/{id}")
-	public void actulializar(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
+	public ResponseEntity<Estudiante> actulializar(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
 		estudiante.setId(id);
 		this.estudianteService.actualizar(estudiante);
+		return ResponseEntity.status(238).body(estudiante);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/actualizar/parcial
-	// Nivel 1: http://localhost:8080/API/v1.0/Matricula/estudiantes/{id}
+	// Nivel 1: http://localhost:8080/API/v1.0/Matricula/estudiantes/2
 	@PatchMapping(path = "{id}")
-	public void actualizarParcial(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
+	public ResponseEntity<Estudiante> actualizarParcial(@RequestBody Estudiante estudiante, @PathVariable Integer id) {
 		estudiante.setId(id);
 		Estudiante estudiante2=this.estudianteService.buscar(estudiante.getId());
 		if(estudiante.getNombre()!=null) {
@@ -54,20 +57,25 @@ public class EstudianteController {
 			estudiante2.setNombre(estudiante.getNombre());
 		}
 		this.estudianteService.actualizar(estudiante2);
+		
+		return ResponseEntity.status(239).body(estudiante2);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/borrar/1
-	//Nivel 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes/{id}
+	//Nivel 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes/2
 	@DeleteMapping(path = "/{id}")
-	public void borrar(@PathVariable Integer id) {
+	public ResponseEntity<String> borrar(@PathVariable Integer id) {
 		this.estudianteService.borrar(id);
+		return ResponseEntity.status(240).body("BORRADO");
+
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/buscar/3/nuevo/prueba
 	//Nivel 1: //http://localhost:8080/API/v1.0/Matricula/estudiantes/1
 	@GetMapping(path = "/{id}")
-	public Estudiante buscarPorId(@PathVariable Integer id) {
+	public ResponseEntity<Estudiante> buscarPorId(@PathVariable Integer id) {
 		return this.estudianteService.buscar(id);
+		return ResponseEntity.status(236).body(estudiante);
 	}
 	
 	//http://localhost:8080/API/v1.0/Matricula/estudiantes/buscarPorGenero?genero=F&edad=28
