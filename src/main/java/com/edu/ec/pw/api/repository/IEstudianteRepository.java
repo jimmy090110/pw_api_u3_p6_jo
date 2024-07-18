@@ -12,6 +12,8 @@ public interface IEstudianteRepository {
 	void eliminar(Integer id);
 	
 	List<Estudiante>seleccionarPorGenero(String genero);
+	List<Estudiante>buscarTodos();
+	
 	
 	
 

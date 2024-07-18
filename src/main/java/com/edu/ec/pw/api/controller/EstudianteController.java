@@ -45,7 +45,7 @@ public class EstudianteController {
 	// http://localhost:8080/API/v1.0/Matricula/estudiantes/guardar
 	// Nivel 1 : http://localhost:8080/API/v1.0/Matricula/estudiantes
 
-	@PostMapping(produces = "application/json", consumes = "application/xml")
+	@PostMapping(produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Estudiante> guardar(@RequestBody Estudiante est) {
 
 		this.estudianteService.guardar(est);
@@ -165,6 +165,9 @@ public class EstudianteController {
 		//estudianteTO.setMaterias(ls);
 		Link myLink =linkTo(methodOn(EstudianteController.class).buscarMateriasPorIdEstudiante(id))
 				.withRel("susMaterias");
+		
+		
+		
 		estudianteTO.add(myLink);
 		
 		return estudianteTO;
@@ -175,5 +178,15 @@ public class EstudianteController {
 	public List<MateriaTO> buscarMateriasPorIdEstudiante(@PathVariable Integer id) {
 		return this.materiaService.buscarPorIdEstudiante(id);
 	}
-
-}
+	
+	//http:
+	@GetMapping(path = "/to", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<EstudianteTO> buscarTodosHateoas(){
+		List<EstudianteTO>lista = this.estudianteService.buscarTodos();
+		for (EstudianteTO estudianteTO : lista) {
+			Link myLink= linkTo(methodOn(EstudianteController.class).buscarMateriasPorIdEstudiante(estudianteTO.getId())).withRel("susMaterias");
+			estudianteTO.add(myLink);
+		}
+		return lista;
+	}
+} 

@@ -2,8 +2,11 @@ package com.edu.ec.pw.api.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.ec.pw.api.repository.modelo.Materia;
 import com.edu.ec.pw.api.service.IMateriaService;
+import com.edu.ec.pw.api.service.to.MateriaTO;
 
 
 @RestController
 @RequestMapping(path="/materias")
-
 public class MateriaController {
 
     @Autowired
@@ -83,6 +86,15 @@ return new ResponseEntity<>(null,cabeceras,240);
         cabeceras.add("valor", "Materia encontrado");
         return new ResponseEntity<>(this.materiaService.buscar(id),cabeceras,236);
     }
+    
+    
+    
+    //////////////////////////////
+ // http://localhost:8082/API/v1.0/Matricula/estudiantes/1/materias GET
+ 	@GetMapping(path = "/{id}/materias", produces = MediaType.APPLICATION_JSON_VALUE)
+ 	public List<MateriaTO> buscarMateriasPorIdEstudiante(@PathVariable Integer id) {
+ 		return this.materiaService.buscarPorIdEstudiante(id);
+ 	}
 
 
 

@@ -2,6 +2,8 @@ package com.edu.ec.pw.api.service.to;
 
 import java.io.Serializable;
 
+import com.edu.ec.pw.api.repository.modelo.Estudiante;
+
 public class MateriaTO implements Serializable{
 
 	
@@ -10,6 +12,7 @@ public class MateriaTO implements Serializable{
 	 private Integer id;
 	    private String nombre;
 	    private Integer creditos;
+	    private EstudianteTO estudiante;
 
 	    public Integer getId() {
 	        return id;
@@ -29,5 +32,14 @@ public class MateriaTO implements Serializable{
 	    public void setCreditos(Integer creditos) {
 	        this.creditos = creditos;
 	    }
+		public EstudianteTO getEstudiante() {
+			return estudiante;
+		}
+		public void setEstudiante(EstudianteTO estudiante) {
+			this.estudiante = estudiante;
+		}
+	    
+	    
+	    
 
 }

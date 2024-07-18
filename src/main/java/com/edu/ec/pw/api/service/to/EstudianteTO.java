@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.hateoas.RepresentationModel;
 
-public class EstudianteTO extends RepresentationModel implements Serializable {
+public class EstudianteTO extends RepresentationModel<EstudianteTO> implements Serializable {
 
 	
 	
