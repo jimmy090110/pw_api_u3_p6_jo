@@ -43,13 +43,13 @@ public class MateriaServiceImpl implements IMateriaService {
         MateriaTO materiaTO = new MateriaTO();
         materiaTO.setId(materia.getId());
         materiaTO.setNombre(materia.getNombre());
-   
+        materiaTO.setCreditos(materia.getNumeroCreditos());
         return materiaTO;
     }
 
 	@Override
-	public List<MateriaTO> buscarPorIdEstudiante(Integer idEstudiante) {
-		List<Materia> lista = this.materiaRepository.seleccionarPorIdEstudiante(idEstudiante);
+	public List<MateriaTO> buscarPorCedulaEstudiante(String cedulaEstudiante) {
+		List<Materia> lista = this.materiaRepository.buscarPorCedulaEstudiante(cedulaEstudiante);
         List<MateriaTO> listaFinal = new ArrayList<>();
         for (Materia materia : lista) {
             listaFinal.add(this.convertir(materia));

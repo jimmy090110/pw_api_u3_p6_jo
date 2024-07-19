@@ -8,6 +8,7 @@ import com.edu.ec.pw.api.repository.modelo.Estudiante;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -25,9 +26,10 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	}
 
 	@Override
-	public Estudiante seleccionar(Integer id) {
-		// TODO Auto-generated method stub
-		return this.entityManager.find(Estudiante.class, id);
+	public Estudiante seleccionar(String cedula) {
+		Query myQuery= this.entityManager.createQuery("SELECT e FROM Estudiante e WHERE e.cedula=:cedula",Estudiante.class);
+		myQuery.setParameter("cedula", cedula);
+		return (Estudiante) myQuery.getSingleResult();
 	}
 
 	@Override
@@ -37,8 +39,8 @@ public class EstudianteRepositoryImpl implements IEstudianteRepository {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
-		this.entityManager.remove(this.seleccionar(id));
+	public void eliminar(String cedula) {
+		this.entityManager.remove(this.seleccionar(cedula));
 	}
 
 	@Override

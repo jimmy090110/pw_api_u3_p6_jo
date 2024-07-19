@@ -11,6 +11,6 @@ public interface IMateriaService {
 	void eliminar(Integer id);
 	void actualizar(Materia materia);
 	void guardar(Materia materia);
-	 public List<MateriaTO> buscarPorIdEstudiante(Integer idEstudiante);
+	 public List<MateriaTO> buscarPorCedulaEstudiante(String cedulaEstudiante);
 
 }

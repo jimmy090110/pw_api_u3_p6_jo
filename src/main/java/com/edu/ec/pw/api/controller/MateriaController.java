@@ -56,8 +56,8 @@ mat.setId(id);
         if(mat.getNombre()!=null){
             mat2.setNombre(mat.getNombre());
         }
-        if(mat.getNumeroHoras()!=null){
-            mat2.setNumeroHoras(mat.getNumeroHoras());
+        if(mat.getNumeroCreditos()!=null){
+            mat2.setNumeroCreditos(mat.getNumeroCreditos());
         }
         this.materiaService.actualizar(mat2);
     
@@ -91,9 +91,9 @@ return new ResponseEntity<>(null,cabeceras,240);
     
     //////////////////////////////
  // http://localhost:8082/API/v1.0/Matricula/estudiantes/1/materias GET
- 	@GetMapping(path = "/{id}/materias", produces = MediaType.APPLICATION_JSON_VALUE)
- 	public List<MateriaTO> buscarMateriasPorIdEstudiante(@PathVariable Integer id) {
- 		return this.materiaService.buscarPorIdEstudiante(id);
+ 	@GetMapping(path = "/{cedula}/materias", produces = MediaType.APPLICATION_JSON_VALUE)
+ 	public List<MateriaTO> buscarMateriasPorIdEstudiante(@PathVariable String cedula) {
+ 		return this.materiaService.buscarPorCedulaEstudiante(cedula);
  	}
 
 

@@ -8,13 +8,11 @@ import com.edu.ec.pw.api.service.to.EstudianteTO;
 public interface IEstudianteService {
 	
 	void guardar(Estudiante estudiante);
-	Estudiante buscar(Integer id);
+	Estudiante buscar(String cedula);
 	void actualizar(Estudiante estudiante);
-	void borrar(Integer id);
+	void borrar(String cedula);
 	List<Estudiante> buscarPorGenero(String genero);
-	
-	public EstudianteTO buscarPorId(Integer id);
-	
+	public EstudianteTO buscarPorCedula(String cedula);
 	public List<EstudianteTO>buscarTodos();
 
 }

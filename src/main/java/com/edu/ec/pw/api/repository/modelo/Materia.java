@@ -28,8 +28,8 @@ public class Materia {
 	@Column(name = "mtra_nombre")
 	private String nombre;
 	
-	@Column(name = "mtra_numero_horas")
-	private Integer numeroHoras;
+	@Column(name = "mtra_numero_creditos")
+	private Integer numeroCreditos;
 	
 	@Column(name = "mtra_modalidad")
 	private String modalidad;
@@ -52,13 +52,7 @@ public class Materia {
 		this.nombre = nombre;
 	}
 
-	public Integer getNumeroHoras() {
-		return numeroHoras;
-	}
 
-	public void setNumeroHoras(Integer numeroHoras) {
-		this.numeroHoras = numeroHoras;
-	}
 
 	public String getModalidad() {
 		return modalidad;
@@ -68,17 +62,35 @@ public class Materia {
 		this.modalidad = modalidad;
 	}
 
+	public Integer getNumeroCreditos() {
+		return numeroCreditos;
+	}
+
+	public void setNumeroCreditos(Integer numeroCreditos) {
+		this.numeroCreditos = numeroCreditos;
+	}
+
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="materua_id_estudiante")
 	private Estudiante estudiante;
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "Materia [id=" + id + ", nombre=" + nombre + ", numeroHoras=" + numeroHoras + ", modalidad=" + modalidad
-				+ "]";
+		return "Materia [id=" + id + ", nombre=" + nombre + ", numeroCreditos=" + numeroCreditos + ", modalidad="
+				+ modalidad + "]";
 	}
 	
+	
+
 	
 	
 	

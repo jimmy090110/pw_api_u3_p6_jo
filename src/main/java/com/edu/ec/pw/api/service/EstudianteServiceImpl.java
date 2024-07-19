@@ -23,9 +23,9 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	}
 
 	@Override
-	public Estudiante buscar(Integer id) {
+	public Estudiante buscar(String cedula) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepository.seleccionar(id);
+		return this.estudianteRepository.seleccionar(cedula);
 	}
 
 	@Override
@@ -35,9 +35,9 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void borrar(String cedula) {
 		// TODO Auto-generated method stub
-		this.estudianteRepository.eliminar(id);
+		this.estudianteRepository.eliminar(cedula);
 	}
 
 	@Override
@@ -53,12 +53,14 @@ public class EstudianteServiceImpl implements IEstudianteService {
         estudianteTO.setApellido(e.getApellido());
         estudianteTO.setFechaNacimiento(e.getFechaNacimiento());
         estudianteTO.setGenero(e.getGenero());
+        estudianteTO.setCedula(e.getCedula());
+        
         return estudianteTO;
     }
 
 	@Override
-	public EstudianteTO buscarPorId(Integer id) {
-		 Estudiante e = this.estudianteRepository.seleccionar(id);
+	public EstudianteTO buscarPorCedula(String cedula) {
+		 Estudiante e = this.estudianteRepository.seleccionar(cedula);
 	        return this.convertir(e);
 	}
 

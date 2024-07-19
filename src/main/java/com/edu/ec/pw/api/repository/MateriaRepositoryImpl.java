@@ -43,10 +43,10 @@ public class MateriaRepositoryImpl implements IMateriaRepository {
 	}
 
 	@Override
-	public List<Materia> seleccionarPorIdEstudiante(Integer idEstudiante) {
-		String jpql = "SELECT m FROM Materia m WHERE m.estudiante.id = :idEstudiante";
+	public List<Materia> buscarPorCedulaEstudiante(String cedulaEstudiante) {
+		String jpql = "SELECT m FROM Materia m WHERE m.estudiante.cedula = :cedulaEstudiante";
 		TypedQuery<Materia> myQuery= this.entityManager.createQuery(jpql, Materia.class);
-		myQuery.setParameter("idEstudiante", idEstudiante);
+		myQuery.setParameter("cedulaEstudiante", cedulaEstudiante);
 		return myQuery.getResultList();
 	}
 

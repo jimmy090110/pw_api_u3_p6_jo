@@ -16,6 +16,7 @@ public class EstudianteTO extends RepresentationModel<EstudianteTO> implements S
 	    private String apellido;
 	    private LocalDateTime fechaNacimiento;
 	    private String genero;
+	    private String cedula;
 
 	    private List<MateriaTO> materias;
 
@@ -56,4 +57,17 @@ public class EstudianteTO extends RepresentationModel<EstudianteTO> implements S
 	    public void setGenero(String genero) {
 	        this.genero = genero;
 	    }
+		public String getCedula() {
+			return cedula;
+		}
+		public void setCedula(String cedula) {
+			this.cedula = cedula;
+		}
+		@Override
+		public String toString() {
+			return "EstudianteTO [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
+					+ fechaNacimiento + ", genero=" + genero + ", cedula=" + cedula + ", materias=" + materias + "]";
+		}
+		
+		
 }

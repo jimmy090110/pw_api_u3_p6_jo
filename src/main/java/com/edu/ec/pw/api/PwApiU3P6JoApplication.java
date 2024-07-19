@@ -1,14 +1,12 @@
 package com.edu.ec.pw.api;
 
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.edu.ec.pw.api.repository.modelo.Estudiante;
-import com.edu.ec.pw.api.repository.modelo.Materia;
+
 import com.edu.ec.pw.api.service.EstudianteServiceImpl;
 import com.edu.ec.pw.api.service.MateriaServiceImpl;
 
